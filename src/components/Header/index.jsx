@@ -1,11 +1,12 @@
 import React from 'react'
+import imgLogo from '../../assets/img/pizza-logo.svg'
 
 const index = () => {
 	return (
 		<div class='header'>
 			<div class='container'>
 				<div class='header__logo'>
-					<img width='38' src='./img/pizza-logo.svg' alt='Pizza logo' />
+					<img width='38' src={imgLogo} alt='Pizza logo' />
 					<div>
 						<h1>React Pizza</h1>
 						<p>самая вкусная пицца во вселенной</p>
@@ -13,7 +14,7 @@ const index = () => {
 				</div>
 				<div class='header__cart'>
 					<div class='button button--cart'>
-						<span>520 ₽</span>
+						<span>0 ₽</span>
 						<div class='button__delimiter'></div>
 						<svg
 							width='18'
@@ -44,7 +45,7 @@ const index = () => {
 								stroke-linejoin='round'
 							/>
 						</svg>
-						<span>3</span>
+						<span>0</span>
 					</div>
 				</div>
 			</div>

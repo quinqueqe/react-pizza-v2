@@ -1,18 +1,32 @@
 import React from 'react'
 
-const index = () => {
+const Categories = () => {
+	// states
+	const [categActiveTab, setCategActiveTab] = React.useState(0)
+	//
+	const categoriesDb = [
+		'Все',
+		'Мясные',
+		'Вегетарианская',
+		'Гриль',
+		'Острые',
+		'Закрытые',
+	]
 	return (
-		<div class='categories'>
+		<div className='categories'>
 			<ul>
-				<li class='active'>Все</li>
-				<li>Мясные</li>
-				<li>Вегетарианская</li>
-				<li>Гриль</li>
-				<li>Острые</li>
-				<li>Закрытые</li>
+				{categoriesDb.map((item, i) => (
+					<li
+						onClick={() => setCategActiveTab(i)}
+						key={i}
+						className={categActiveTab === i ? 'active' : ''}
+					>
+						{item}
+					</li>
+				))}
 			</ul>
 		</div>
 	)
 }
 
-export default index
+export default Categories
