@@ -1,7 +1,28 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addPizza, setTotalPrice } from '../../redux/slices/cart/cartSlice'
+import { selectCart } from '../../redux/selectors'
 
-const PizzaBlock = ({ imageUrl, title, price, types, sizes }) => {
+const PizzaBlock = ({ id, imageUrl, title, price, types, sizes }) => {
+	const dispatch = useDispatch()
+	const { totalPrice, items } = useSelector(selectCart)
+	const pizzaItem = items.find(obj => obj.id === id)
+	const addedCount = pizzaItem ? pizzaItem.count : 0
 	const typesDb = ['тонкое', 'традиционное']
+
+	const pushPizza = id => {
+		const pizza = {
+			id,
+			imageUrl,
+			title,
+			price,
+			type: typesDb[activeType],
+			size: sizes[activeSize],
+		}
+		dispatch(setTotalPrice(totalPrice + price))
+		dispatch(addPizza(pizza))
+		console.log('add')
+	}
 
 	// states
 	const [activeType, setActiveType] = React.useState(0)
@@ -14,14 +35,22 @@ const PizzaBlock = ({ imageUrl, title, price, types, sizes }) => {
 			<div className='pizza-block__selector'>
 				<ul>
 					{types.map((typeIndex, i) => (
-						<li onClick={() => setActiveType(i)} key={i} className={activeType === i ? 'active' : ''}>
+						<li
+							onClick={() => setActiveType(i)}
+							key={i}
+							className={activeType === i ? 'active' : ''}
+						>
 							{typesDb[typeIndex]}
 						</li>
 					))}
 				</ul>
 				<ul>
 					{sizes.map((size, i) => (
-						<li onClick={() => setActiveSize(i)} key={i} className={activeSize === i ? 'active' : ''}>
+						<li
+							onClick={() => setActiveSize(i)}
+							key={i}
+							className={activeSize === i ? 'active' : ''}
+						>
 							{size} см
 						</li>
 					))}
@@ -29,7 +58,10 @@ const PizzaBlock = ({ imageUrl, title, price, types, sizes }) => {
 			</div>
 			<div className='pizza-block__bottom'>
 				<div className='pizza-block__price'>от {price} ₽</div>
-				<div className='button button--outline button--add'>
+				<div
+					onClick={() => pushPizza(id)}
+					className='button button--outline button--add'
+				>
 					<svg
 						width='12'
 						height='12'
@@ -43,7 +75,7 @@ const PizzaBlock = ({ imageUrl, title, price, types, sizes }) => {
 						/>
 					</svg>
 					<span>Добавить</span>
-					<i>0</i>
+					{pizzaItem && <i>{addedCount}</i>}
 				</div>
 			</div>
 		</div>

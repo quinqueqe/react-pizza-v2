@@ -1,20 +1,24 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import imgLogo from '../../assets/img/pizza-logo.svg'
+import { useSelector } from 'react-redux'
+import { selectCart } from '../../redux/selectors'
 
-const index = () => {
+const Header = () => {
+	const { totalPrice, items } = useSelector(selectCart)
+	const totalCount = items.reduce((sum, item) => sum + item.count, 0)// высчитывает количество пицц в корзине
 	return (
 		<div class='header'>
 			<div class='container'>
-				<div class='header__logo'>
+				<Link to='/' class='header__logo'>
 					<img width='38' src={imgLogo} alt='Pizza logo' />
 					<div>
 						<h1>React Pizza</h1>
 						<p>самая вкусная пицца во вселенной</p>
 					</div>
-				</div>
-				<div class='header__cart'>
+				</Link>
+				<Link to='/cart' class='header__cart'>
 					<div class='button button--cart'>
-						<span>0 ₽</span>
+						<span>{totalPrice} ₽</span>
 						<div class='button__delimiter'></div>
 						<svg
 							width='18'
@@ -45,12 +49,12 @@ const index = () => {
 								stroke-linejoin='round'
 							/>
 						</svg>
-						<span>0</span>
+						<span>{totalCount}</span>
 					</div>
-				</div>
+				</Link>
 			</div>
 		</div>
 	)
 }
 
-export default index
+export default Header

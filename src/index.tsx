@@ -17,11 +17,9 @@ if (rootElem) {
 	const root = ReactDOM.createRoot(rootElem)
 	root.render(
 		<Provider store={store}>
-			<React.StrictMode>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</React.StrictMode>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</Provider>
 	)
 }

@@ -1,9 +1,10 @@
-import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategActiveTab } from '../../redux/slices/filter/filterSlice'
+import { selectFilter } from '../../redux/selectors'
 
 const Categories = () => {
-	// states
-	const [categActiveTab, setCategActiveTab] = React.useState(0)
-	//
+	const dispatch = useDispatch()
+	const { categActiveTab } = useSelector(selectFilter)
 	const categoriesDb = [
 		'Все',
 		'Мясные',
@@ -17,7 +18,7 @@ const Categories = () => {
 			<ul>
 				{categoriesDb.map((item, i) => (
 					<li
-						onClick={() => setCategActiveTab(i)}
+						onClick={() => dispatch(setCategActiveTab(i))}
 						key={i}
 						className={categActiveTab === i ? 'active' : ''}
 					>

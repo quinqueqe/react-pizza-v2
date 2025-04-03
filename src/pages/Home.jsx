@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 
 // components
 import Categories from '../components/Categories'
@@ -7,17 +6,15 @@ import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock/index'
 
 // Redux
-
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
+import { selectPizza } from '../redux/selectors'
 const Home = () => {
-	const [pizzas, setPizzas] = React.useState([])
+	const dispatch = useDispatch()
+	const { pizzas } = useSelector(selectPizza)
+
 	React.useEffect(() => {
-		const getFetch = async () => {
-			const { data } = await axios.get(
-				'https://6759dac0099e3090dbe32341.mockapi.io/items'
-			)
-			setPizzas(data)
-		}
-		getFetch()
+		dispatch(fetchPizzas())
 	}, [])
 	return (
 		<div className='content'>

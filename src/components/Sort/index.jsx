@@ -1,24 +1,25 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSortActiveTab, setOpenPopup} from '../../redux/slices/filter/filterSlice'
+import { selectFilter } from '../../redux/selectors'
 
 const Sort = () => {
+	const { sortActiveTab, openPopup } = useSelector(selectFilter)
+	const dispatch = useDispatch()
 	const sortDb = [
 		{ name: 'популярности', sortProperty: 'rating' },
 		{ name: 'цене', sortProperty: 'price' },
 		{ name: 'алфавиту', sortProperty: 'title' },
 	]
 	const sortRef = React.useRef()
-	
-	// states
-	const [openPopup, setOpenPopup] = React.useState(false)
-	const [sortActiveTab, setSortActiveTab] = React.useState(0)
-	//
+
 
 
 	// закрытие popup окна по нажатию в пустую облась экрана сайта
 		React.useEffect(() => {
 			const handleClickOutside = e => {
 				if (sortRef.current && !sortRef.current.contains(e.target)) {
-					setOpenPopup(false)
+					dispatch(setOpenPopup(false))
 				}
 			}
 	
@@ -44,7 +45,7 @@ const Sort = () => {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => setOpenPopup(!openPopup)}>
+				<span onClick={() => dispatch(setOpenPopup(!openPopup))}>
 					{sortDb[sortActiveTab].name}
 				</span>
 			</div>
@@ -54,8 +55,8 @@ const Sort = () => {
 						{sortDb.map((item, i) => (
 							<li
 								onClick={() => {
-									setSortActiveTab(i)
-									setOpenPopup(false)
+									dispatch(setSortActiveTab(i))
+									dispatch(setOpenPopup(false))
 								}}
 								className={sortActiveTab === i ? 'active' : ''}
 								key={i}
