@@ -1,3 +1,4 @@
 *.scss linguist-language=plaintext
 *.sass linguist-language=plaintext
 *.css linguist-language=plaintext
+*.html linguist-language=plaintext
