@@ -5,12 +5,14 @@ import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock/index'
 import Skeleton from '../components/PizzaBlock/skeleton'
+import sortDb from '../components/Sort/sortDb.json'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
-import { selectPizza } from '../redux/selectors'
+import { selectFilter, selectPizza } from '../redux/selectors'
 const Home = () => {
+	const { sortType, categoryId } = useSelector(selectFilter)
 	const dispatch = useDispatch()
 	const { pizzas, status } = useSelector(selectPizza)
 
@@ -19,8 +21,10 @@ const Home = () => {
 	))
 
 	React.useEffect(() => {
-		dispatch(fetchPizzas())
-	}, [])
+		const category = categoryId > 0 ? categoryId : ''
+		console.log(sortType, sortDb[sortType].sortProperty)
+		dispatch(fetchPizzas({ sortType, category, sortDb }))
+	}, [sortType, categoryId])
 	return (
 		<div className='content'>
 			<div className='container'>

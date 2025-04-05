@@ -1,16 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSortActiveTab, setOpenPopup} from '../../redux/slices/filter/filterSlice'
+import { setSortType, setOpenPopup} from '../../redux/slices/filter/filterSlice'
 import { selectFilter } from '../../redux/selectors'
+import sortDb from './sortDb.json'
 
 const Sort = () => {
-	const { sortActiveTab, openPopup } = useSelector(selectFilter)
+	const { sortType, openPopup } = useSelector(selectFilter)
 	const dispatch = useDispatch()
-	const sortDb = [
-		{ name: 'популярности', sortProperty: 'rating' },
-		{ name: 'цене', sortProperty: 'price' },
-		{ name: 'алфавиту', sortProperty: 'title' },
-	]
 	const sortRef = React.useRef()
 
 
@@ -46,7 +42,7 @@ const Sort = () => {
 				</svg>
 				<b>Сортировка по:</b>
 				<span onClick={() => dispatch(setOpenPopup(!openPopup))}>
-					{sortDb[sortActiveTab].name}
+					{sortDb[sortType].name}
 				</span>
 			</div>
 			{openPopup && (
@@ -55,10 +51,10 @@ const Sort = () => {
 						{sortDb.map((item, i) => (
 							<li
 								onClick={() => {
-									dispatch(setSortActiveTab(i))
+									dispatch(setSortType(i))
 									dispatch(setOpenPopup(false))
 								}}
-								className={sortActiveTab === i ? 'active' : ''}
+								className={sortType === i ? 'active' : ''}
 								key={i}
 							>
 								{item.name}
