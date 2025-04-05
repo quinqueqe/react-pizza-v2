@@ -36,7 +36,6 @@ const Home = () => {
 
 	React.useEffect(() => {
 		const category = categoryId > 0 ? categoryId : ''
-		console.log(sortType, sortDb[sortType].sortProperty)
 		dispatch(fetchPizzas({ sortType, category, sortDb }))
 	}, [sortType, categoryId, valueInput])
 	return (

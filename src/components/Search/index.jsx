@@ -3,13 +3,22 @@ import styles from './Search.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setValueInput } from '../../redux/slices/filter/filterSlice'
 import { selectFilter } from '../../redux/selectors'
+import debounce from 'lodash.debounce'
+
 
 const Search = () => {
 	const dispatch = useDispatch()
 	const { valueInput } = useSelector(selectFilter)
 	const inputRef = React.useRef()
+	const updateSearchValue = React.useCallback(
+		debounce(str => {
+			dispatch(setValueInput(str))
+		}, 200),
+		[]
+	)
 	const handleInputChange = e => {
 		dispatch(setValueInput(e.target.value))
+		updateSearchValue(e.target.value)
 	}
 	const clearInput = () => {
 		dispatch(setValueInput(''))
