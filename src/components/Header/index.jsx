@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import imgLogo from '../../assets/img/pizza-logo.svg'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../redux/selectors'
+import Search from '../Search'
 
 const Header = () => {
 	const { totalPrice, items } = useSelector(selectCart)
@@ -16,6 +17,7 @@ const Header = () => {
 						<p>самая вкусная пицца во вселенной</p>
 					</div>
 				</Link>
+				<Search/>
 				<Link to='/cart' class='header__cart'>
 					<div class='button button--cart'>
 						<span>{totalPrice} ₽</span>

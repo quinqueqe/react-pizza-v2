@@ -6,6 +6,7 @@ const filterSlice = createSlice({
 		categoryId: 0,
 		sortType: 0,
 		openPopup: false,
+		valueInput: ''
 	},
 	reducers: {
 		setCategoryId(state, action) {
@@ -16,11 +17,14 @@ const filterSlice = createSlice({
 		},
 		setOpenPopup(state, action) {
 			state.openPopup = action.payload
+		},
+		setValueInput(state, action) {
+			state.valueInput = action.payload
 		}
 	},
 })
 
 
 
-export const { setCategoryId, setSortType, setOpenPopup } = filterSlice.actions
+export const { setCategoryId, setSortType, setOpenPopup, setValueInput } = filterSlice.actions
 export default filterSlice.reducer

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 
 // components
@@ -12,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
 import { selectFilter, selectPizza } from '../redux/selectors'
 const Home = () => {
-	const { sortType, categoryId } = useSelector(selectFilter)
+	const { sortType, categoryId, valueInput } = useSelector(selectFilter)
 	const dispatch = useDispatch()
 	const { pizzas, status } = useSelector(selectPizza)
 
@@ -20,11 +21,24 @@ const Home = () => {
 		<Skeleton key={index} />
 	))
 
+	// филтруются пиццы и получаем объекты элементов из массива pizzas
+	const pizzs = pizzas
+		.filter(obj => {
+			if (obj.title.toLowerCase().includes(valueInput.toLowerCase())) {
+				// достаем 'title' из массивов и превращаем его в нижний реестр, далее проверяем есть ли в 'title' такие же элементы как и в input из 'valueInput'
+				return true // если есть, то возращаем true и код работает
+			} else {
+				return false // если нет, возращаем false и код не работает
+			}
+		})
+		.map((value, i) => <PizzaBlock {...value} key={i} />)
+
+
 	React.useEffect(() => {
 		const category = categoryId > 0 ? categoryId : ''
 		console.log(sortType, sortDb[sortType].sortProperty)
 		dispatch(fetchPizzas({ sortType, category, sortDb }))
-	}, [sortType, categoryId])
+	}, [sortType, categoryId, valueInput])
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -48,11 +62,7 @@ const Home = () => {
 				) : status === 'loading' ? (
 					<div className='content__items'>{skeleton}</div>
 				) : (
-					<div className='content__items'>
-						{pizzas.map((pizza, i) => (
-							<PizzaBlock {...pizza} key={i} />
-						))}
-					</div>
+					<div className='content__items'>{pizzs}</div>
 				)}
 			</div>
 		</div>
