@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import emptyCartImg from '../assets/img/empty-cart.png'
 import { useDispatch, useSelector } from 'react-redux'
@@ -5,11 +6,15 @@ import { selectCart } from '../redux/selectors'
 import { clearCart } from '../redux/slices/cart/cartSlice'
 
 import CartItem from '../components/CartItem'
+import { CartItemType } from '../@types/type'
 
-export default function Cart() {
+const Cart: React.FC = () => {
 	const dispatch = useDispatch()
 	const { items, totalPrice } = useSelector(selectCart)
-	const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+	const totalCount = items.reduce(
+		(sum: number, item: any) => sum + item.count,
+		0
+	)
 
 	return (
 		<div className='content'>
@@ -101,8 +106,8 @@ export default function Cart() {
 						</div>
 
 						<div className='content__items'>
-							{items.map((item, i) => (
-								<CartItem {...item} key={i} />
+							{items.map((value: CartItemType, i: number) => (
+								<CartItem {...value} key={i} />
 							))}
 						</div>
 						<div className='cart__bottom'>
@@ -146,9 +151,9 @@ export default function Cart() {
 						</div>
 					</div>
 				) : (
-					<div class='cart cart--empty'>
+					<div className='cart cart--empty'>
 						<h2>
-							Корзина пустая <icon>😕</icon>
+							Корзина пустая <span>😕</span>
 						</h2>
 						<p>
 							Вероятней всего, вы не заказывали ещё пиццу.
@@ -156,7 +161,7 @@ export default function Cart() {
 							Для того, чтобы заказать пиццу, перейди на главную страницу.
 						</p>
 						<img src={emptyCartImg} alt='Empty cart' />
-						<Link to='/' class='button button--black'>
+						<Link to='/' className='button button--black'>
 							<span>Вернуться назад</span>
 						</Link>
 					</div>
@@ -165,3 +170,5 @@ export default function Cart() {
 		</div>
 	)
 }
+
+export default Cart

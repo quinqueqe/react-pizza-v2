@@ -1,30 +1,31 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSortType, setOpenPopup} from '../../redux/slices/filter/filterSlice'
+import {
+	setSortType,
+	setOpenPopup,
+} from '../../redux/slices/filter/filterSlice'
 import { selectFilter } from '../../redux/selectors'
 import sortDb from './sortDb.json'
 
-const Sort = () => {
+const Sort: React.FC = () => {
 	const { sortType, openPopup } = useSelector(selectFilter)
 	const dispatch = useDispatch()
-	const sortRef = React.useRef()
-
-
+	const sortRef = React.useRef<HTMLDivElement>(null)
 
 	// закрытие popup окна по нажатию в пустую облась экрана сайта
-		React.useEffect(() => {
-			const handleClickOutside = e => {
-				if (sortRef.current && !sortRef.current.contains(e.target)) {
-					dispatch(setOpenPopup(false))
-				}
+	React.useEffect(() => {
+		const handleClickOutside = (e: any) => {
+			if (sortRef.current && !sortRef.current.contains(e.target)) {
+				dispatch(setOpenPopup(false))
 			}
-	
-			document.addEventListener('click', handleClickOutside)
-			return () => {
-				document.removeEventListener('click', handleClickOutside)
-			}
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [])
+		}
+
+		document.addEventListener('click', handleClickOutside)
+		return () => {
+			document.removeEventListener('click', handleClickOutside)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 	return (
 		<div ref={sortRef} className='sort'>
 			<div className='sort__label'>
@@ -47,7 +48,7 @@ const Sort = () => {
 			</div>
 			{openPopup && (
 				<div className='sort__popup'>
-					<ul >
+					<ul>
 						{sortDb.map((item, i) => (
 							<li
 								onClick={() => {

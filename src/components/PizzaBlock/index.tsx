@@ -3,15 +3,23 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPizza, setTotalPrice } from '../../redux/slices/cart/cartSlice'
 import { selectCart } from '../../redux/selectors'
+import { PizzaBlockProps, PizzaItemType } from '../../@types/type'
 
-const PizzaBlock = ({ id, imageUrl, title, price, types, sizes }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+	id,
+	imageUrl,
+	title,
+	price,
+	types,
+	sizes,
+}) => {
 	const dispatch = useDispatch()
 	const { totalPrice, items } = useSelector(selectCart)
-	const pizzaItem = items.find(obj => obj.id === id)
+	const pizzaItem = items.find((obj: PizzaItemType) => obj.id === id)
 	const addedCount = pizzaItem ? pizzaItem.count : 0
 	const typesDb = ['тонкое', 'традиционное']
 
-	const pushPizza = id => {
+	const pushPizza = (id: any) => {
 		const pizza = {
 			id,
 			imageUrl,

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import styles from './Search.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
@@ -5,24 +6,23 @@ import { setValueInput } from '../../redux/slices/filter/filterSlice'
 import { selectFilter } from '../../redux/selectors'
 import debounce from 'lodash.debounce'
 
-
-const Search = () => {
+const Search: React.FC = () => {
 	const dispatch = useDispatch()
 	const { valueInput } = useSelector(selectFilter)
-	const inputRef = React.useRef()
+	const inputRef = React.useRef<HTMLInputElement>(null)
 	const updateSearchValue = React.useCallback(
 		debounce(str => {
 			dispatch(setValueInput(str))
 		}, 200),
 		[]
 	)
-	const handleInputChange = e => {
+	const handleInputChange = (e: any) => {
 		dispatch(setValueInput(e.target.value))
 		updateSearchValue(e.target.value)
 	}
 	const clearInput = () => {
 		dispatch(setValueInput(''))
-		inputRef.current.focus()
+		inputRef.current?.focus()
 	}
 	return (
 		<div className={styles.root}>

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	countMinus,
@@ -5,10 +6,18 @@ import {
 	deleteItem,
 } from '../../redux/slices/cart/cartSlice'
 import { selectCart } from '../../redux/selectors'
+import { CartItemType, PizzaItemType } from '../../@types/type'
 
-const CartItem = ({ id, imageUrl, title, type, size, price }) => {
+const CartItem: React.FC<CartItemType> = ({
+	id,
+	imageUrl,
+	title,
+	type,
+	size,
+	price,
+}) => {
 	const { items } = useSelector(selectCart)
-	const { count } = items.find(obj => obj.id === id)
+	const { count } = items.find((obj: PizzaItemType) => obj.id === id)
 	const itemPrice = price * count
 	const dispatch = useDispatch()
 	return (

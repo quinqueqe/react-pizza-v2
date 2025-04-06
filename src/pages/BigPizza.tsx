@@ -6,11 +6,12 @@ import { selectBigPizza } from '../redux/selectors'
 import { useParams } from 'react-router-dom'
 import Skeleton from '../components/PizzaBlock/skeleton'
 
-const BigPizza = () => {
+const BigPizza: React.FC = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const { item, status } = useSelector(selectBigPizza)
 	React.useEffect(() => {
+		// @ts-ignore
 		dispatch(fetchPizza({ id }))
 	}, [])
 
@@ -19,9 +20,9 @@ const BigPizza = () => {
 	return (
 		<div className='container'>
 			{status === 'error' ? (
-				<div class='content__error cart cart--empty '>
+				<div className='content__error cart cart--empty '>
 					<h2>
-						Произошла ошибка <icon>😕</icon>
+						Произошла ошибка <span>😕</span>
 					</h2>
 					<p>
 						К сожалению, не удалось получить пиццу.
@@ -37,7 +38,7 @@ const BigPizza = () => {
 					<h4>{title}</h4>
 					<h2>{price} ₽</h2>
 
-					<Link to='/' class='button button--black'>
+					<Link to='/' className='button button--black'>
 						<span>Вернуться назад</span>
 					</Link>
 				</div>

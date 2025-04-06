@@ -1,27 +1,31 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import imgLogo from '../../assets/img/pizza-logo.svg'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../redux/selectors'
 import Search from '../Search'
 
-const Header = () => {
+const Header: React.FC = () => {
 	const { totalPrice, items } = useSelector(selectCart)
-	const totalCount = items.reduce((sum, item) => sum + item.count, 0)// высчитывает количество пицц в корзине
+	const totalCount = items.reduce(
+		(sum: number, item: any) => sum + item.count,
+		0
+	) // высчитывает количество пицц в корзине
 	return (
-		<div class='header'>
-			<div class='container'>
-				<Link to='/' class='header__logo'>
+		<div className='header'>
+			<div className='container'>
+				<Link to='/' className='header__logo'>
 					<img width='38' src={imgLogo} alt='Pizza logo' />
 					<div>
 						<h1>React Pizza</h1>
 						<p>самая вкусная пицца во вселенной</p>
 					</div>
 				</Link>
-				<Search/>
-				<Link to='/cart' class='header__cart'>
-					<div class='button button--cart'>
+				<Search />
+				<Link to='/cart' className='header__cart'>
+					<div className='button button--cart'>
 						<span>{totalPrice} ₽</span>
-						<div class='button__delimiter'></div>
+						<div className='button__delimiter'></div>
 						<svg
 							width='18'
 							height='18'
