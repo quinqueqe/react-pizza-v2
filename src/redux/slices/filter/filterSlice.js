@@ -6,7 +6,8 @@ const filterSlice = createSlice({
 		categoryId: 0,
 		sortType: 0,
 		openPopup: false,
-		valueInput: ''
+		valueInput: '',
+		currentPage: 1,
 	},
 	reducers: {
 		setCategoryId(state, action) {
@@ -20,11 +21,14 @@ const filterSlice = createSlice({
 		},
 		setValueInput(state, action) {
 			state.valueInput = action.payload
+		},
+		setCurrentPage(state,action) {
+			state.currentPage = action.payload
 		}
 	},
 })
 
 
 
-export const { setCategoryId, setSortType, setOpenPopup, setValueInput } = filterSlice.actions
+export const { setCategoryId, setSortType, setOpenPopup, setValueInput, setCurrentPage } = filterSlice.actions
 export default filterSlice.reducer

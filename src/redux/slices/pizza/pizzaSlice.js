@@ -4,9 +4,9 @@ import axios from 'axios'
 export const fetchPizzas = createAsyncThunk(
 	'pizza/fetchGetPizzas',
 	async (params) => {
-		const {sortType, category, sortDb} = params
+		const {sortType, category, sortDb, currentPage} = params
 		const { data } = await axios.get(
-			`https://6759dac0099e3090dbe32341.mockapi.io/items?category=${category}&sortBy=${sortDb[sortType].sortProperty}&order=desc`
+			`https://6759dac0099e3090dbe32341.mockapi.io/items?category=${category}&sortBy=${sortDb[sortType].sortProperty}&order=desc&page=${currentPage}&limit=4`
 		)
 		return data
 	},

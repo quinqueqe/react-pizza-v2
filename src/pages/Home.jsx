@@ -7,17 +7,18 @@ import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock/index'
 import Skeleton from '../components/PizzaBlock/skeleton'
 import sortDb from '../components/Sort/sortDb.json'
+import Pagination from '../components/Pagination'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
 import { selectFilter, selectPizza } from '../redux/selectors'
 const Home = () => {
-	const { sortType, categoryId, valueInput } = useSelector(selectFilter)
+	const { sortType, categoryId, valueInput, currentPage } = useSelector(selectFilter)
 	const dispatch = useDispatch()
 	const { pizzas, status } = useSelector(selectPizza)
 
-	const skeleton = [...new Array(10)].map((_, index) => (
+	const skeleton = [...new Array(4)].map((_, index) => (
 		<Skeleton key={index} />
 	))
 
@@ -33,11 +34,10 @@ const Home = () => {
 		})
 		.map((value, i) => <PizzaBlock {...value} key={i} />)
 
-
 	React.useEffect(() => {
 		const category = categoryId > 0 ? categoryId : ''
-		dispatch(fetchPizzas({ sortType, category, sortDb }))
-	}, [sortType, categoryId, valueInput])
+		dispatch(fetchPizzas({ sortType, category, sortDb, currentPage }))
+	}, [sortType, categoryId, valueInput, currentPage])
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -63,6 +63,7 @@ const Home = () => {
 				) : (
 					<div className='content__items'>{pizzs}</div>
 				)}
+				<Pagination />
 			</div>
 		</div>
 	)
