@@ -33,8 +33,8 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 	}
 
 	// states
-	const [activeType, setActiveType] = React.useState(0)
-	const [activeSize, setActiveSize] = React.useState(0)
+	const [activeType, setActiveType] = React.useState<number>(0)
+	const [activeSize, setActiveSize] = React.useState<number>(0)
 	//
 	return (
 		<div className='pizza-block'>
