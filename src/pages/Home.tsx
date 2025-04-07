@@ -2,18 +2,18 @@
 import React from 'react'
 
 // components
+import { PizzaType } from '../@types/types'
 import Categories from '../components/Categories'
-import Sort from '../components/Sort'
+import Pagination from '../components/Pagination'
 import PizzaBlock from '../components/PizzaBlock/index'
 import Skeleton from '../components/PizzaBlock/skeleton'
+import Sort from '../components/Sort'
 import sortDb from '../components/Sort/sortDb.json'
-import Pagination from '../components/Pagination'
-import { PizzaType } from '../@types/type'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
 import { selectFilter, selectPizza } from '../redux/selectors'
+import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
 
 const Home: React.FC = () => {
 	const { sortType, categoryId, valueInput, currentPage } =
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
 
 	// филтруются пиццы и получаем объекты элементов из массива pizzas
 	const pizzs = pizzas
-		.filter((obj: any) => {
+		.filter((obj: PizzaType) => {
 			if (obj.title.toLowerCase().includes(valueInput.toLowerCase())) {
 				// достаем 'title' из массивов и превращаем его в нижний реестр, далее проверяем есть ли в 'title' такие же элементы как и в input из 'valueInput'
 				return true // если есть, то возращаем true и код работает

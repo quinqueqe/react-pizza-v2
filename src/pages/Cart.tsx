@@ -1,12 +1,12 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import emptyCartImg from '../assets/img/empty-cart.png'
-import { useDispatch, useSelector } from 'react-redux'
 import { selectCart } from '../redux/selectors'
 import { clearCart } from '../redux/slices/cart/cartSlice'
 
+import { CartItemProps } from '../@types/types'
 import CartItem from '../components/CartItem'
-import { CartItemType } from '../@types/type'
 
 const Cart: React.FC = () => {
 	const dispatch = useDispatch()
@@ -106,7 +106,7 @@ const Cart: React.FC = () => {
 						</div>
 
 						<div className='content__items'>
-							{items.map((value: CartItemType, i: number) => (
+							{items.map((value: CartItemProps, i: number) => (
 								<CartItem {...value} key={i} />
 							))}
 						</div>

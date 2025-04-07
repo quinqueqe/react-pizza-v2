@@ -7,6 +7,7 @@ import {
 import { selectFilter } from '../../redux/selectors'
 import sortDb from './sortDb.json'
 
+
 const Sort: React.FC = () => {
 	const { sortType, openPopup } = useSelector(selectFilter)
 	const dispatch = useDispatch()
@@ -14,8 +15,8 @@ const Sort: React.FC = () => {
 
 	// закрытие popup окна по нажатию в пустую облась экрана сайта
 	React.useEffect(() => {
-		const handleClickOutside = (e: any) => {
-			if (sortRef.current && !sortRef.current.contains(e.target)) {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
 				dispatch(setOpenPopup(false))
 			}
 		}

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react'
-import styles from './Search.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { setValueInput } from '../../redux/slices/filter/filterSlice'
-import { selectFilter } from '../../redux/selectors'
 import debounce from 'lodash.debounce'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ChangeEvent } from '../../@types/types'
+import { selectFilter } from '../../redux/selectors'
+import { setValueInput } from '../../redux/slices/filter/filterSlice'
+import styles from './Search.module.scss'
 
 const Search: React.FC = () => {
 	const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const Search: React.FC = () => {
 		}, 200),
 		[]
 	)
-	const handleInputChange = (e: any) => {
+	const handleInputChange = (e: ChangeEvent) => {
 		dispatch(setValueInput(e.target.value))
 		updateSearchValue(e.target.value)
 	}
