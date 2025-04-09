@@ -2,7 +2,7 @@
 import React from 'react'
 
 // components
-import { PizzaType } from '../@types/types'
+import { PizzaType } from '../redux/slices/pizzas/types'
 import Categories from '../components/Categories'
 import Pagination from '../components/Pagination'
 import PizzaBlock from '../components/PizzaBlock/index'

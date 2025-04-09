@@ -1,12 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-interface filterSliceState {
-	categoryId: number
-	sortType: number
-	openPopup: boolean
-	valueInput: string
-	currentPage: number
-}
+import { filterSliceState } from './types'
 
 const initialState: filterSliceState = {
 	categoryId: 0,

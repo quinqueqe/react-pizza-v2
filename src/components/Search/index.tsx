@@ -2,7 +2,7 @@
 import debounce from 'lodash.debounce'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ChangeEvent } from '../../@types/types'
+import { ChangeEvent } from '../../redux/store'
 import { selectFilter } from '../../redux/slices/filter/selectors'
 import { setValueInput } from '../../redux/slices/filter/slice'
 import styles from './Search.module.scss'

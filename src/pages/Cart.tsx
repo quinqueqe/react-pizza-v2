@@ -5,7 +5,7 @@ import emptyCartImg from '../assets/img/empty-cart.png'
 import { selectCart } from '../redux/slices/cart/selectors'
 import { clearCart } from '../redux/slices/cart/slice'
 
-import { CartItemProps } from '../@types/types'
+import { CartItemProps } from '../redux/slices/cart/types'
 import CartItem from '../components/CartItem'
 
 const Cart: React.FC = () => {

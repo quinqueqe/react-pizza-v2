@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CartItemProps, PizzaItemType } from '../../@types/types'
+import { PizzaItemType } from '../../redux/slices/pizzas/types'
+import { CartItemProps } from '../../redux/slices/cart/types'
 import { selectCart } from '../../redux/slices/cart/selectors'
 import {
 	countMinus,
