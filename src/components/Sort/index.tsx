@@ -1,12 +1,13 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../../redux/store'
 import { selectFilter } from '../../redux/slices/filter/selectors'
 import { setOpenPopup, setSortType } from '../../redux/slices/filter/slice'
 import sortDb from './sortDb.json'
 
 const Sort: React.FC = () => {
 	const { sortType, openPopup } = useSelector(selectFilter)
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const sortRef = React.useRef<HTMLDivElement>(null)
 
 	// закрытие popup окна по нажатию в пустую облась экрана сайта

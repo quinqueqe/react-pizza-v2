@@ -1,10 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import {useAppDispatch} from '../../redux/store'
 import { selectFilter } from '../../redux/slices/filter/selectors'
 import { setCategoryId } from '../../redux/slices/filter/slice'
 
 const Categories: React.FC = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const { categoryId } = useSelector(selectFilter)
 	const categoriesDb = [
 		'Все',

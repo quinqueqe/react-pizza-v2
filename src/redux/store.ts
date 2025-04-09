@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 import bigPizza from './slices/bigPizza/slice'
 import cart from './slices/cart/slice'
 import filter from './slices/filter/slice'
@@ -14,3 +15,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+export const useAppDispatch = useDispatch.withTypes<typeof store.dispatch>()

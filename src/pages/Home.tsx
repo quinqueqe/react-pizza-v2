@@ -11,7 +11,8 @@ import Sort from '../components/Sort'
 import sortDb from '../components/Sort/sortDb.json'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../redux/store'
 import { selectFilter } from '../redux/slices/filter/selectors'
 import { selectPizza } from '../redux/slices/pizzas/selectors'
 import { fetchPizzas } from '../redux/slices/pizzas/slice'
@@ -19,7 +20,7 @@ import { fetchPizzas } from '../redux/slices/pizzas/slice'
 const Home: React.FC = () => {
 	const { sortType, categoryId, valueInput, currentPage } =
 		useSelector(selectFilter)
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const { pizzas, status } = useSelector(selectPizza)
 
 	const skeleton = [...new Array(4)].map((_, index) => <Skeleton key={index} />)
@@ -37,11 +38,7 @@ const Home: React.FC = () => {
 		.map((value: PizzaType, i: number) => <PizzaBlock {...value} key={i} />)
 
 	React.useEffect(() => {
-		const category = categoryId > 0 ? categoryId : ''
-		dispatch(
-			// @ts-ignore
-			fetchPizzas({ sortType, category, sortDb, currentPage })
-		)
+		dispatch(fetchPizzas({ sortType, categoryId, sortDb, currentPage }))
 	}, [sortType, categoryId, valueInput, currentPage])
 	return (
 		<div className='content'>

@@ -1,12 +1,17 @@
 import { sort } from '../filter/types'
 
+export enum Status {
+	LOADING = 'loading',
+	SUCCESS = 'success',
+	ERROR = 'error',
+}
 export interface pizzaSliceState {
 	pizzas: PizzaType[]
-	status: 'loading' | 'ready' | 'error'
+	status: Status
 }
 export type fetchPizzasArgs = {
 	sortType: number
-	category: number
+	categoryId: number
 	sortDb: sort[]
 	currentPage: number
 }
@@ -25,5 +30,3 @@ export type PizzaType = {
 	sizes: number[]
 	rating: number
 }
-
-

@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import debounce from 'lodash.debounce'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import {useAppDispatch} from '../../redux/store'
 import { ChangeEvent } from '../../redux/store'
 import { selectFilter } from '../../redux/slices/filter/selectors'
 import { setValueInput } from '../../redux/slices/filter/slice'
 import styles from './Search.module.scss'
 
 const Search: React.FC = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const { valueInput } = useSelector(selectFilter)
 	const inputRef = React.useRef<HTMLInputElement>(null)
 	const updateSearchValue = React.useCallback(
@@ -70,7 +71,7 @@ const Search: React.FC = () => {
 				/>
 			</svg>
 
-			{valueInput != '' ? (
+			{valueInput !== '' ? (
 				<svg
 					onClick={() => clearInput()}
 					className={styles.close}

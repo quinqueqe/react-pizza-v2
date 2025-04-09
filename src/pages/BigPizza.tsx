@@ -1,5 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import {useAppDispatch} from '../redux/store'
 import { Link, useParams } from 'react-router-dom'
 import { BigPizzaItem } from '../redux/slices/bigPizza/types'
 import { fetchPizza } from '../redux/slices/bigPizza/slice'
@@ -8,7 +9,7 @@ import Skeleton from '../components/PizzaBlock/skeleton'
 
 const BigPizza: React.FC = () => {
 	const { id } = useParams()
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const { item, status }: BigPizzaItem = useSelector(selectBigPizza)
 	React.useEffect(() => {
 		// @ts-ignore
