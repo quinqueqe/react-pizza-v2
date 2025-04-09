@@ -1,9 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { PizzaBlockProps, PizzaItemType } from '../../@types/types'
-import { selectCart } from '../../redux/selectors'
-import { addPizza, setTotalPrice } from '../../redux/slices/cart/cartSlice'
+import {
+	PizzaBlockProps,
+	PizzaItemType,
+	CartItemProps,
+} from '../../@types/types'
+import { selectCart } from '../../redux/slices/cart/selectors'
+import { addPizza, setTotalPrice } from '../../redux/slices/cart/slice'
 
 const PizzaBlock: React.FC<PizzaBlockProps> = ({
 	id,
@@ -20,13 +24,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 	const typesDb = ['тонкое', 'традиционное']
 
 	const pushPizza = (id: string) => {
-		const pizza = {
+		const pizza: CartItemProps = {
 			id,
 			imageUrl,
 			title,
 			price,
 			type: typesDb[activeType],
 			size: sizes[activeSize],
+			count: 0,
 		}
 		dispatch(setTotalPrice(totalPrice + price))
 		dispatch(addPizza(pizza))

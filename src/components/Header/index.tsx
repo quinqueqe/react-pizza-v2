@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import imgLogo from '../../assets/img/pizza-logo.svg'
 import { useSelector } from 'react-redux'
-import { selectCart } from '../../redux/selectors'
+import { Link, useLocation } from 'react-router-dom'
+import imgLogo from '../../assets/img/pizza-logo.svg'
+import { selectCart } from '../../redux/slices/cart/selectors'
 import Search from '../Search'
-import { useLocation } from 'react-router-dom'
 
 const Header: React.FC = () => {
 	const { pathname } = useLocation()

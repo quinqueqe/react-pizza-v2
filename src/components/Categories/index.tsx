@@ -1,7 +1,7 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCategoryId } from '../../redux/slices/filter/filterSlice'
-import { selectFilter } from '../../redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectFilter } from '../../redux/slices/filter/selectors'
+import { setCategoryId } from '../../redux/slices/filter/slice'
 
 const Categories: React.FC = () => {
 	const dispatch = useDispatch()

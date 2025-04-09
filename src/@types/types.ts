@@ -16,6 +16,7 @@ export type CartItemProps = {
 	type: string
 	size: number
 	price: number
+	count: number
 }
 //-----------------------------------------------------------
 
@@ -40,3 +41,20 @@ export type PizzaItemType = {
 // events-------------------------------------------------------
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>
 //--------------------------------------------------------------
+
+// interface-----------------------------------------------------
+export interface cartSliceState {
+	totalPrice: number
+	items: CartItemProps[]
+}
+
+export type bigPizza = {
+	imageUrl: string
+	title: string
+	price: string
+}
+
+export type BigPizzaItem = {
+	item: bigPizza
+	status: string
+}

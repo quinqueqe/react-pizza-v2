@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CartItemProps, PizzaItemType } from '../../@types/types'
-import { selectCart } from '../../redux/selectors'
+import { selectCart } from '../../redux/slices/cart/selectors'
 import {
 	countMinus,
 	countPlus,
 	deleteItem,
-} from '../../redux/slices/cart/cartSlice'
+} from '../../redux/slices/cart/slice'
 
 const CartItem: React.FC<CartItemProps> = ({
 	id,
@@ -17,7 +17,8 @@ const CartItem: React.FC<CartItemProps> = ({
 	price,
 }) => {
 	const { items } = useSelector(selectCart)
-	const { count } = items.find((obj: PizzaItemType) => obj.id === id)
+	const findItem = items.find((obj: PizzaItemType) => obj.id === id)
+	const count = findItem ? findItem.count : 0
 	const itemPrice = price * count
 	const dispatch = useDispatch()
 	return (

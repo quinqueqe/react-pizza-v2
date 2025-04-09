@@ -1,12 +1,8 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-	setSortType,
-	setOpenPopup,
-} from '../../redux/slices/filter/filterSlice'
-import { selectFilter } from '../../redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectFilter } from '../../redux/slices/filter/selectors'
+import { setOpenPopup, setSortType } from '../../redux/slices/filter/slice'
 import sortDb from './sortDb.json'
-
 
 const Sort: React.FC = () => {
 	const { sortType, openPopup } = useSelector(selectFilter)

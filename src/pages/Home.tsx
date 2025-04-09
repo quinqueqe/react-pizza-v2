@@ -12,8 +12,9 @@ import sortDb from '../components/Sort/sortDb.json'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFilter, selectPizza } from '../redux/selectors'
-import { fetchPizzas } from '../redux/slices/pizza/pizzaSlice'
+import { selectFilter } from '../redux/slices/filter/selectors'
+import { selectPizza } from '../redux/slices/pizzas/selectors'
+import { fetchPizzas } from '../redux/slices/pizzas/slice'
 
 const Home: React.FC = () => {
 	const { sortType, categoryId, valueInput, currentPage } =
