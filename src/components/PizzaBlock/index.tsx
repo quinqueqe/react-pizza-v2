@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {useAppDispatch} from '../../redux/store'
+import { useAppDispatch } from '../../redux/store'
 // import { Link } from 'react-router-dom'
-import { PizzaType, PizzaItemType } from '../../redux/slices/pizzas/types'
-import { CartItemProps } from '../../redux/slices/cart/types'
-import { selectCart } from '../../redux/slices/cart/selectors'
-import { addPizza, setTotalPrice } from '../../redux/slices/cart/slice'
+import { PizzaItemType, PizzaType } from '../../redux/pizzas/types'
+import { selectCart } from '../../redux/cart/selectors'
+import { addPizza, setTotalPrice } from '../../redux/cart/slice'
+import { CartItemProps } from '../../redux/cart/types'
 
 const PizzaBlock: React.FC<PizzaType> = ({
 	id,
@@ -42,8 +42,8 @@ const PizzaBlock: React.FC<PizzaType> = ({
 	return (
 		<div className='pizza-block'>
 			{/* <Link to={`pizza/${id}`}> */}
-				<img className='pizza-block__image' src={imageUrl} alt='Pizza' />
-				<h4 className='pizza-block__title'>{title}</h4>
+			<img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+			<h4 className='pizza-block__title'>{title}</h4>
 			{/* </Link> */}
 			<div className='pizza-block__selector'>
 				<ul>

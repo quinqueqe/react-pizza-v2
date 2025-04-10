@@ -2,20 +2,20 @@
 import React from 'react'
 
 // components
-import { PizzaType } from '../redux/slices/pizzas/types'
 import Categories from '../components/Categories'
 import Pagination from '../components/Pagination'
 import PizzaBlock from '../components/PizzaBlock/index'
 import Skeleton from '../components/PizzaBlock/skeleton'
 import Sort from '../components/Sort'
 import sortDb from '../components/Sort/sortDb.json'
+import { PizzaType } from '../redux/pizzas/types'
 
 // Redux
 import { useSelector } from 'react-redux'
+import { selectPizza } from '../redux/pizzas/selectors'
+import { fetchPizzas } from '../redux/pizzas/slice'
+import { selectFilter } from '../redux/filter/selectors'
 import { useAppDispatch } from '../redux/store'
-import { selectFilter } from '../redux/slices/filter/selectors'
-import { selectPizza } from '../redux/slices/pizzas/selectors'
-import { fetchPizzas } from '../redux/slices/pizzas/slice'
 
 const Home: React.FC = () => {
 	const { sortType, categoryId, valueInput, currentPage } =

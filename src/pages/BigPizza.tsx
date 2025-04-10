@@ -1,19 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {useAppDispatch} from '../redux/store'
 import { Link, useParams } from 'react-router-dom'
-import { BigPizzaItem } from '../redux/slices/bigPizza/types'
-import { fetchPizza } from '../redux/slices/bigPizza/slice'
-import { selectBigPizza } from '../redux/slices/pizzas/selectors'
 import Skeleton from '../components/PizzaBlock/skeleton'
+import { selectBigPizza } from '../redux/pizzas/selectors'
+import { fetchPizza } from '../redux/bigPizza/slice'
+import { BigPizzaItem } from '../redux/bigPizza/types'
+import { useAppDispatch } from '../redux/store'
 
 const BigPizza: React.FC = () => {
 	const { id } = useParams()
 	const dispatch = useAppDispatch()
 	const { item, status }: BigPizzaItem = useSelector(selectBigPizza)
 	React.useEffect(() => {
-		// @ts-ignore
-		dispatch(fetchPizza({ id }))
+		dispatch(fetchPizza({ id: id! }))
 	})
 
 	if (!item) {

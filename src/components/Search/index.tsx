@@ -4,8 +4,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import {useAppDispatch} from '../../redux/store'
 import { ChangeEvent } from '../../redux/store'
-import { selectFilter } from '../../redux/slices/filter/selectors'
-import { setValueInput } from '../../redux/slices/filter/slice'
+import { selectFilter } from '../../redux/filter/selectors'
+import { setValueInput } from '../../redux/filter/slice'
 import styles from './Search.module.scss'
 
 const Search: React.FC = () => {

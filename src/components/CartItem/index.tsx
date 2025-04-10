@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from '../../redux/store'
-import { PizzaItemType } from '../../redux/slices/pizzas/types'
-import { CartItemProps } from '../../redux/slices/cart/types'
-import { selectCart } from '../../redux/slices/cart/selectors'
+import { PizzaItemType } from '../../redux/pizzas/types'
+import { selectCart } from '../../redux/cart/selectors'
 import {
 	countMinus,
 	countPlus,
 	deleteItem,
-} from '../../redux/slices/cart/slice'
+} from '../../redux/cart/slice'
+import { CartItemProps } from '../../redux/cart/types'
+import { useAppDispatch } from '../../redux/store'
 
 const CartItem: React.FC<CartItemProps> = ({
 	id,
