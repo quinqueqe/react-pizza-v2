@@ -4,12 +4,13 @@ import { Link, useLocation } from 'react-router-dom'
 import imgLogo from '../../assets/img/pizza-logo.svg'
 import { selectCart } from '../../redux/cart/selectors'
 import Search from '../Search'
+import { CartItemProps } from '../../redux/cart/types'
 
 const Header: React.FC = () => {
 	const { pathname } = useLocation()
 	const { totalPrice, items } = useSelector(selectCart)
 	const totalCount = items.reduce(
-		(sum: number, item: any) => sum + item.count,
+		(sum: number, item: CartItemProps) => sum + item.count,
 		0
 	) // высчитывает количество пицц в корзине
 	return (

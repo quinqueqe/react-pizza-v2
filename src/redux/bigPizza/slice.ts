@@ -1,17 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { bigPizzaSliceState, bigPizza, fetchPizzaArgs } from './types'
-
-export const fetchPizza = createAsyncThunk(
-	'pizza/getPizzaId',
-	async (params: fetchPizzaArgs) => {
-		const { id } = params
-		const { data } = await axios.get(
-			`https://6759dac0099e3090dbe32341.mockapi.io/items/${id}`
-		)
-		return data as bigPizza
-	}
-)
+import { createSlice } from '@reduxjs/toolkit'
+import { bigPizzaSliceState } from './types'
+import { fetchBigPizza } from './asyncActions'
 
 const initialState: bigPizzaSliceState = {
 	item: null,
@@ -23,15 +12,15 @@ const bigPizzaSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: builder => {
-		builder.addCase(fetchPizza.pending, state => {
+		builder.addCase(fetchBigPizza.pending, state => {
 			state.item = null
 			state.status = 'loading'
 		})
-		builder.addCase(fetchPizza.fulfilled, (state, action) => {
+		builder.addCase(fetchBigPizza.fulfilled, (state, action) => {
 			state.item = action.payload
 			state.status = 'ready'
 		})
-		builder.addCase(fetchPizza.rejected, state => {
+		builder.addCase(fetchBigPizza.rejected, state => {
 			state.item = null
 			state.status = 'error'
 		})

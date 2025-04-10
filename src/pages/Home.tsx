@@ -13,7 +13,7 @@ import { PizzaType } from '../redux/pizzas/types'
 // Redux
 import { useSelector } from 'react-redux'
 import { selectPizza } from '../redux/pizzas/selectors'
-import { fetchPizzas } from '../redux/pizzas/slice'
+import { fetchPizzas } from '../redux/pizzas/asyncActions'
 import { selectFilter } from '../redux/filter/selectors'
 import { useAppDispatch } from '../redux/store'
 

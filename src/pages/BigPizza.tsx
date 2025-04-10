@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import Skeleton from '../components/PizzaBlock/skeleton'
 import { selectBigPizza } from '../redux/pizzas/selectors'
-import { fetchPizza } from '../redux/bigPizza/slice'
+import { fetchBigPizza } from '../redux/bigPizza/asyncActions'
 import { BigPizzaItem } from '../redux/bigPizza/types'
 import { useAppDispatch } from '../redux/store'
 
@@ -12,7 +12,7 @@ const BigPizza: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { item, status }: BigPizzaItem = useSelector(selectBigPizza)
 	React.useEffect(() => {
-		dispatch(fetchPizza({ id: id! }))
+		dispatch(fetchBigPizza({ id: id! }))
 	})
 
 	if (!item) {

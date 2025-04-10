@@ -13,7 +13,7 @@ const Cart: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { items, totalPrice } = useSelector(selectCart)
 	const totalCount = items.reduce(
-		(sum: number, item: any) => sum + item.count,
+		(sum: number, item: CartItemProps) => sum + item.count,
 		0
 	)
 
